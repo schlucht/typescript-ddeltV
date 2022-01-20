@@ -8,7 +8,7 @@ export class PfcAlgorithm {
   constructor(public pfcLines: string[]) {
     this.readStep()
   }
-  private readStep() {
+  private readStep(): void {
     let start = false
     let brackets = 0
     let text: string[] = []

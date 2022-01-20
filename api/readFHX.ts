@@ -9,7 +9,7 @@ export class ReadFHX {
     if (fhXString) {
       this._lines = fhXString.split('\n')
       this.readBatch()
-      // console.log(this.batches[0].Pfc.Step[0].StepParam[5])
+      console.log(this.batches[0])
     }
   }
 

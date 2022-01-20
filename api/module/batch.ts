@@ -1,4 +1,7 @@
+import { AttributeInstance } from './attributeInstance';
+import { FormulaParameter } from './formulaParameter';
 import { PfcAlgorithm } from './pfcAlgoritm';
+
 
 export class Batch {
   private _name = '';
@@ -30,12 +33,22 @@ export class Batch {
   public get Pfc(): PfcAlgorithm {
     return this._pfc;
   }
+  private _formulaParam: FormulaParameter[] = []
+  public get FormulaParam(): FormulaParameter[] {
+    return this._formulaParam
+  }
+  private _attributeParam: AttributeInstance[] = []
+  public get AttributeInst(): AttributeInstance[] {
+    return this._attributeParam
+  }
 
   constructor(public batchLines: string[]) {
     if (batchLines) {
       this.readName(batchLines[0]);
       this.readProperties();
       this.readPFC();
+      this.readFormulaParam();
+      this.readAttribute()
     }
     // console.log(this)
   }
@@ -78,7 +91,7 @@ export class Batch {
       }
     }
   }
-
+  
   private readPFC() {
     let start = false;
     let brackets = 0;
@@ -101,7 +114,55 @@ export class Batch {
       }
     }
   }
+
   private readFormulaParam() {
-    
+    let start = false
+    let brackets = 0
+    let text: string[] = []
+
+    for (let i = 0; i < this.batchLines.length; i++) {
+      if (start) {
+        text.push(this.batchLines[i]);
+        brackets += this.batchLines[i].indexOf('{') > -1 ? 1 : 0;
+        brackets -= this.batchLines[i].indexOf('}') > -1 ? 1 : 0;
+        if (brackets === 0) {
+          start = false;
+          brackets = 0;
+          this._formulaParam.push(new FormulaParameter(text));
+          text = [];
+        }
+      } else {
+        start = this.batchLines[i].indexOf('FORMULA_PARAMETER') > -1
+        if (start) {
+          text.push(this.batchLines[i])
+        }
+      }
+    }
+  }
+
+  private readAttribute() {
+    let start = false
+    let brackets = 0
+    let text: string[] = []
+    for (let form of this._formulaParam){
+      for (let i = 0; i < this.batchLines.length; i++) {
+        if (start) {
+          text.push(this.batchLines[i]);
+          brackets += this.batchLines[i].indexOf('{') > -1 ? 1 : 0;
+          brackets -= this.batchLines[i].indexOf('}') > -1 ? 1 : 0;
+          if (brackets === 0) {
+            start = false;
+            brackets = 0;
+            this._attributeParam.push(new AttributeInstance(text));
+            text = [];
+          }
+        } else {
+          start = this.batchLines[i].indexOf(`ATTRIBUTE_INSTANCE NAME="${form.Name}"`) > -1
+          if (start) {
+            text.push(this.batchLines[i])
+          }
+        }
+      }
+    }
   }
 }
