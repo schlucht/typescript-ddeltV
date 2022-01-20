@@ -1,0 +1,17 @@
+@import './styles/default.css';
+
+h1, h2 {
+  font-family: Lato;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 30vw auto;
+  grid-template-rows: 100vh;
+}
+.left {
+  background-color: red;
+}
+.right {
+  background-color: yellow;
+}
