@@ -416,7 +416,8 @@
   /**
    * The font size
    */
-  "editor.fontSize": 14
+  "editor.fontSize": 14,
+  "git.ignoreLimitWarning": true
   /**
    * The line height
    */
