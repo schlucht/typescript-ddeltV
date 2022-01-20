@@ -37,7 +37,7 @@ export class Batch {
       this.readProperties();
       this.readPFC();
     }
-    console.log(this)
+    // console.log(this)
   }
 
   private readName(line: string) {

@@ -1,6 +1,5 @@
-import { UpList } from './up/uplist'
-import { UP } from './up/up'
-import { Batch } from './batch/batch'
+
+import { Batch } from './module/batch'
 
 export class ReadFHX {
   batches: Batch[] = []
