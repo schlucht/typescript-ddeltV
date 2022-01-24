@@ -1,4 +1,9 @@
 
 export default {
-    PREFIX: 'ots_'
+    PREFIX: 'ots_',
+    TYPES: [
+        'OPERATION',
+        'UNIT_PROCEDURE',
+        'PROCEDURE'
+    ]
 }

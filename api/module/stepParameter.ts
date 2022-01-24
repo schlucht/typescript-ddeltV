@@ -1,11 +1,11 @@
 export class StepParameter {
-  private _name = ''
+  private name = ''
   public get Name() {
-    return this._name
+    return this.name
   }
-   private _defName = ''
+   private defName = ''
   public get DeferredName() {
-    return this._defName
+    return this.defName
   }
 
   constructor(public stepParamLines: string[]){
@@ -17,7 +17,7 @@ export class StepParameter {
      let reg = /STEP_PARAMETER NAME="(.*)"/gm
     let match = reg.exec(this.stepParamLines[0]);
     if (match) {
-      this._name = match[1];      
+      this.name = match[1];      
     }
   }
 
@@ -25,7 +25,7 @@ export class StepParameter {
     this.stepParamLines.forEach((line: string) => {
       if (line.indexOf('DEFERRED_TO') > -1) {
         let match = /DEFERRED_TO=(.*)/gm.exec(line) 
-        this._defName = match[1]
+        this.defName = match[1]
       }
     })
   }

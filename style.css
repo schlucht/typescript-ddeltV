@@ -1,13 +1,14 @@
 @import './styles/default.css';
+@import './styles/sidebar.css';
 
 h1, h2 {
-  font-family: Lato;
+  font-family: 'Dongle' sans-serif;
 }
 
-.app {
+#app {
   display: grid;
-  grid-template-columns: 30vw auto;
-  grid-template-rows: 100vh;
+  grid-template-columns: minmax(30rem, 30vw) auto;
+  grid-template-rows: 100vh;  
 }
 .left {
   background-color: red;

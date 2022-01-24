@@ -4,51 +4,48 @@ import { PfcAlgorithm } from './pfcAlgoritm';
 
 
 export class Unit {
-  _name = '';
+  private name = '';
   public get Name(): string {
-    return this._name;
+    return this.name;
   }
 
-  private _type = '';
+  private type = '';
   public get Type(): string {
-    return this._type;
+    return this.type;
   }
 
-  private _description = '';
+  private description = '';
   public get Description(): string {
-    return this._description;
+    return this.description;
   }
 
-  private _author = '';
+  private author = '';
   public get Author(): string {
-    return this._author;
+    return this.author;
   }
 
-  private _unit = '';
+  unit = '';
   public get Unit(): string {
-    return this._unit;
+    return this.unit;
   }
 
-  private _folder = '';
+  private folder = '';
   public get Folder(): string {
-    return this._folder;
+    return this.folder;
   }
 
-  private _pfc: PfcAlgorithm;
+  private pfc: PfcAlgorithm;
   public get Pfc(): PfcAlgorithm {
-    return this._pfc;
+    return this.pfc;
   }
-  private _formulaParam: FormulaParameter[] = []
+  private formulaParam: FormulaParameter[] = []
   public get FormulaParam(): FormulaParameter[] {
-    return this._formulaParam
+    return this.formulaParam
   }
-  private _attributeParam: AttributeInstance[] = []
+  private attributeParam: AttributeInstance[] = []
   public get AttributeInst(): AttributeInstance[] {
-    return this._attributeParam
+    return this.attributeParam
   }
-
-  
-
 
   constructor(public batchLines: string[]) {
     if (batchLines) {
@@ -58,7 +55,6 @@ export class Unit {
       this.readFormulaParam();
       this.readAttribute()
     }
-    // console.log(this)
   }
 
   private readName(line: string) {
@@ -66,14 +62,15 @@ export class Unit {
     const regFolder = /CATEGORY="(.*)"/g
     const folderMatch = regFolder.exec(line)
     if (folderMatch) {
-      this._folder = folderMatch[1]
+      this.folder = folderMatch[1]
     }
     let match = regName.exec(line);
     if (match) {
-      this._name = match[1];
-      this._type = match[2];
+      this.name = match[1];
+      this.type = match[2];
     }
   }
+  
   private readProperties() {
     let regDesc = /DESCRIPTION="(.*)"/g;
     let regUser = /AUTHOR="(.*)"/g;
@@ -82,23 +79,23 @@ export class Unit {
     for (let line of this.batchLines) {
       let matchDesc = regDesc.exec(line);
       if (matchDesc) {
-        this._description = matchDesc[1];
+        this.description = matchDesc[1];
         continue;
       }
       let matchUnit = regUnit.exec(line);
       if (matchUnit) {
-        this._unit = matchUnit[1];
+        this.unit = matchUnit[1];
         continue;
       }
       let matchUser = regUser.exec(line);
       if (matchUser) {
-        this._author = matchUser[1];
+        this.author = matchUser[1];
         continue;
       }
       if (
-        this._description !== '' &&
-        this._unit !== '' &&
-        this._author !== ''
+        this.description !== '' &&
+        this.unit !== '' &&
+        this.author !== ''
       ) {
         break;
       }
@@ -117,7 +114,7 @@ export class Unit {
         if (brackets === 0) {
           start = false;
           brackets = 0;
-          this._pfc = new PfcAlgorithm(text);
+          this.pfc = new PfcAlgorithm(text);
           text = [];
         }
       } else {
@@ -141,7 +138,7 @@ export class Unit {
         if (brackets === 0) {
           start = false;
           brackets = 0;
-          this._formulaParam.push(new FormulaParameter(text));
+          this.formulaParam.push(new FormulaParameter(text));
           text = [];
         }
       } else {
@@ -157,7 +154,7 @@ export class Unit {
     let start = false
     let brackets = 0
     let text: string[] = []
-    for (let form of this._formulaParam){
+    for (let form of this.formulaParam){
       for (let i = 0; i < this.batchLines.length; i++) {
         if (start) {
           text.push(this.batchLines[i]);
@@ -166,7 +163,7 @@ export class Unit {
           if (brackets === 0) {
             start = false;
             brackets = 0;
-            this._attributeParam.push(new AttributeInstance(text));
+            this.attributeParam.push(new AttributeInstance(text));
             text = [];
           }
         } else {

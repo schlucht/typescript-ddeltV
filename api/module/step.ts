@@ -2,21 +2,21 @@ import { Rectangle } from "./rectangel";
 import { StepParameter } from "./stepParameter";
 
 export class Step {
-  private _name: string = ''
+  private name: string = ''
   public get Name() {
-    return this._name;
+    return this.name;
   }
-  private _description: string = ''
+  private description: string = ''
   public get Description() {
-    return this._description;
+    return this.description;
   }
-  private _rect: Rectangle
+  private rect: Rectangle
   public get Rect(): Rectangle {
-    return this._rect
+    return this.rect
   }
-  private _stepParam: StepParameter[] = []
+  private stepParam: StepParameter[] = []
   public get StepParam(): StepParameter[] {
-    return this._stepParam
+    return this.stepParam
   }
   constructor(public stepLines: string[]) {
     this.readName()
@@ -29,7 +29,7 @@ export class Step {
     let reg = /STEP NAME="(.*)" D/gm
     let match = reg.exec(this.stepLines[0]);
     if (match) {
-      this._name = match[1];      
+      this.name = match[1];      
     }
   }
 
@@ -37,14 +37,14 @@ export class Step {
     let reg = / DESCRIPTION="(.*)"/gm
     let match = reg.exec(this.stepLines[2]);
     if (match) {
-      this._description = match[1];      
+      this.description = match[1];      
     }
   }
   private readRect() {
     let reg = /[XYHW]=([-\d]*)/gm
     let match = this.stepLines[3].match(reg)
     if (match) {
-      this._rect = {
+      this.rect = {
         X: Number(match[0].match(/[0-9].*/)), 
         Y: Number(match[1].match(/\d.*/)), 
         H: Number(match[2].match(/\d.*/)),
@@ -64,7 +64,7 @@ export class Step {
         if (brackets === 0) {
           start = false;
           brackets = 0;
-          this._stepParam.push(new StepParameter(text));
+          this.stepParam.push(new StepParameter(text));
           text = [];
         }
       } else {

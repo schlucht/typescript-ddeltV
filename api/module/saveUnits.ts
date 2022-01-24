@@ -2,7 +2,7 @@ import { Unit } from "./unit";
 import C from '../const';
 
 export class SaveUnit {
-    private _prefix = 'ots_'
+    private prefix = 'ots_'
     constructor(public units: Unit[]) {
 
     }

@@ -6,14 +6,16 @@ export class ReadStorage {
 
     readStorage(): Map<string, Unit[]> {
         const map = new Map<string, Unit[]>()
-        for (let x in window.localStorage) {
+        let b: Unit[] = []
+        let name = ''
+        for (let storageKey in window.localStorage) {
             
-            if (x.indexOf(C.PREFIX) > -1) {
-                console.log(x)
+            if (storageKey.indexOf(C.PREFIX) > -1) {                
+                b = JSON.parse(window.localStorage.getItem(storageKey)) as Unit[]  
+                name = storageKey.substring(C.PREFIX.length)
+                map.set(name, b)              
             }
-
-        }
-        
+        }  
         return map;
     }
 }

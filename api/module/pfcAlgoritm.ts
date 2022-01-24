@@ -1,9 +1,9 @@
 import { Step } from "./step"
 
 export class PfcAlgorithm {
-  private _step: Step[] = []
+  private step: Step[] = []
   public get Step() : Step[] {
-    return this._step
+    return this.step
   }
   constructor(public pfcLines: string[]) {
     this.readStep()
@@ -21,7 +21,7 @@ export class PfcAlgorithm {
         if (brackets === 0) {
           start = false;
           brackets = 0;
-          this._step.push(new Step(text));
+          this.step.push(new Step(text));
           text = [];
         }
       } else {

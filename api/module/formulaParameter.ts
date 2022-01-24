@@ -1,14 +1,13 @@
+
 export class FormulaParameter {
-  private _name = ''
+  private name = ''
   public get Name(): string {
-    return this._name
+    return this.name
   }
-  private _type = ''
+  private type = ''
   public get Type(): string {
-    return this._type
+    return this.type
   }
-  
-  
 
   constructor(public formulaLines: string[]){
     this.readNameType(this.formulaLines[0])
@@ -19,8 +18,8 @@ export class FormulaParameter {
     let match = regName.exec(line);
     
     if (match) {
-      this._name = match[1];
-      this._type = match[2];
+      this.name = match[1];
+      this.type = match[2];
     }
   }
 }
