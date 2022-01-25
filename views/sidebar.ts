@@ -29,7 +29,7 @@ export class Sidebar {
     const divLogo = document.createElement('div') as HTMLDivElement;
     divLogo.classList.add('logo');
     divLogo.innerHTML = `
-      <span class="logo-text">Delta-<span>V</span></span>
+      <ots-logo></ots-logo>      
     `;
     return divLogo;
   }

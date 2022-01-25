@@ -6,6 +6,8 @@ import { ReadStorage } from './api/readStorage'
 import { ContentPosition, Layout } from './views/layout'
 import { Sidebar } from './views/sidebar'
 
+import { OtsLogo } from './views/otsLogo/otsLogo';
+
 
 // Write TypeScript code!
 
@@ -20,3 +22,4 @@ sidebar.StorageDates = listData;
 const readFHX = new ReadFHX(daten)
 layout.addContent(sidebar.createSideBar(), ContentPosition.contentLeft)
 
+window.customElements.define('ots-logo', OtsLogo);
