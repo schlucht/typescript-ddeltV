@@ -11,4 +11,4 @@ const appDiv = document.getElementById('app') as HTMLDivElement;
 const rs = new ReadStorage();
 const map = rs.readStorage();
 
-console.log(map);
+console.log();
