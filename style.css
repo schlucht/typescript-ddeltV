@@ -1,18 +1,30 @@
 @import './styles/default.css';
+@import './styles/sidebar.css';
+@import './styles/op.css';
+@import './styles/table.css';
 
-
-h1, h2 {
-  font-family: 'Dongle' sans-serif;
+:root {
+  --col-light: #ccc;
+  --col-dark: #011230;
+  --col-primary: #ffd700;
+  --col-green: #09915d;
+  --col-blue: #4949ec;
+  --col-red: #f14c4c; 
 }
 
-#app {
-  display: grid;
-  grid-template-columns: minmax(30rem, 30vw) auto;
-  grid-template-rows: 100vh;  
+*, *::after, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.left {
-  background-color: red;
+
+html {  
+  font-size: 62.5%;
 }
-.right {
-  background-color: yellow;
+
+body {
+  font-family: 'Dongle', sans-serif;
+  font-size: 1.6rem;
+  height: 100vh;  
 }
+

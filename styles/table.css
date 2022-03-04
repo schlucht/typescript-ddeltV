@@ -1,0 +1,33 @@
+
+table { 
+  width: 100%;
+}
+th {
+  font-size: 2rem;
+  background-color: #555;
+  color: #fff;
+}
+td, th {  
+  padding: .5rem 0;
+  border-bottom: 1px #ccc solid;
+  border-right: 1px #ccc solid;
+}
+td.number {
+  font-family: monospace;
+  font-size: 2rem;
+  text-align: center;
+
+}
+td.text {
+  font-weight: 700;
+  font-family: monospace;
+  font-size: 2rem;
+}
+td.desc {
+  font-family: sans-serif;
+  font-size: 1.6rem;
+  padding-left: .5rem;
+}
+tr {
+  
+}

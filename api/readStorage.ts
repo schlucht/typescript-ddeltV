@@ -11,8 +11,8 @@ export class ReadStorage {
         for (let storageKey in window.localStorage) {
             
             if (storageKey.indexOf(C.PREFIX) > -1) {                
-                b = JSON.parse(window.localStorage.getItem(storageKey)) as Unit[]  
-                name = storageKey.substring(C.PREFIX.length)
+                b = JSON.parse(window.localStorage.getItem(storageKey)) as Unit[] 
+                name = storageKey.split('/')[2]
                 map.set(name, b)              
             }
         }  

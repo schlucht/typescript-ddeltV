@@ -11,8 +11,59 @@
     <title>FHX Parser</title>    
 </head>
 <body>    
-    <!-- <div id="app"></div> -->
-    <h1><a href="https://typescript-dmg4ex.stackblitz.io/hallo">Vorlage</a></h1>
+    <div id="app">
+        <header> 
+            <h1>UP Dokumentation</h1>
+        </header>
+        <main>
+            <section id="sidebar" class="sidebar">
+                <div class="sidebarTitle">
+                    <h2>UP UNit: <span>Q2000</span></h2>
+                </div>
+                <div class="sidebarList">
+                    <ul class="ups" id="upList">
+                        <li class="up">
+                            <h3>UP_Q2000_START</h3>
+                        </li>
+                        <li class="up"><h3>UP_Q2000_TR</h3></li>
+                        <li class="up"><h3>UP_Q2000_1TR</h3></li>
+                        <li class="up"><h3>UP_Q2000_2TR</h3></li>
+                        <li class="up"><h3>UP_Q2000_ENDE</h3></li>
+                        <li class="up"><h3>UP_Q2000_REAKTION</h3></li>
+                    </ul>
+                </div>
+            </section>
+            <section id="content" class="content">
+                <div id="canvasParent">
+                    <canvas id="canvas">                        
+                    </canvas>
+                </div>
+                <div id="table">
+                    <table>
+                        <tr>
+                            <th>Name</th><th>Wert</th><th>Bemerkung</th>
+                        </tr>
+                        <tr >
+                            <td class="text">FP_BESCHREI_TEXT</td><td class="number">""</td><td class="desc">""</td>
+                        </tr>
+                        <tr>
+                            <td class="text">FP_HK_TCW</td><td class="number">60</td><td class="desc">Temperatur Sollwert</td>
+                        </tr>
+                        <tr>
+                            <td class="text">FP_HK_TCW_HO</td><td class="number">60</td><td class="desc">Temperatur Sollwert bei SS</td>
+                        </tr>
+                        <tr>
+                            <td class="text">FP_HK_TAHH_INNEN</td><td class="number">160</td><td class="desc">Temperatur Hoch Hoch Alarm</td>
+                        </tr>
+                        <tr >
+                            <td class="text">FP_HK_TAH</td><td class="number">100</td><td class="desc">Temperatur Hoch Alarm</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    
 
     <script src="index.ts" type="module"></script>
 </body>
