@@ -16,7 +16,7 @@ export class UpList {
       li.innerHTML = `<h3>${unit['name']}</h3>`;
       li.addEventListener('click', (e) => {
         const list = e.target as HTMLLIElement;       
-        console.dir(this.dataList)
+        console.dir(unit.Pfc)
       });
 
       this.ulElement.appendChild(li);
