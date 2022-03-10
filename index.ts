@@ -3,6 +3,9 @@ import './style.css';
 import { ReadStorage } from './api/readStorage'
 import { Box } from './components/box';
 import { UpList } from './components/upList';
+import { Unit } from './api/module/unit';
+import { ReadFHX } from './api/readFHX';
+import daten from './api/daten';
 
 const canvasParent = document.getElementById('canvasParent') as HTMLDivElement;
 const canvas = document.getElementById('canvas') as HTMLCanvasElement;
@@ -19,11 +22,14 @@ const boxCenter = (canvas.clientWidth - boxWidth) / 2;
 
 const distance = 50;
 
+new ReadFHX(daten);
 
 const ctx = canvas.getContext('2d');
 
 const deltaVDaten = new ReadStorage();
-const dates = deltaVDaten.readStorage().get('STANDART_Q2000');
+let dates: Unit[] = [];
+
+dates = deltaVDaten.readStorage().get('STANDART_Q2000');
 
 const createList = new UpList(dates, ulElement);
 createList.readUnitTitle();
@@ -57,6 +63,7 @@ function activatedBox(e: MouseEvent) {
  
   }
 }
+
 // boxes = [b, b2, b3];
 for (let box of boxes) {
   box.createBox();

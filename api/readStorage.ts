@@ -14,7 +14,7 @@ export class ReadStorage {
                 b = JSON.parse(window.localStorage.getItem(storageKey)) as Unit[] 
                 name = storageKey.split('/')[2]
                 map.set(name, b)              
-            }
+            } 
         }  
         return map;
     }

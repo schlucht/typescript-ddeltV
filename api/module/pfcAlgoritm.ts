@@ -1,13 +1,16 @@
 import { Step } from "./step"
 
 export class PfcAlgorithm {
-  private step: Step[] = []
+  private _step: Step[] = []
   public get Step() : Step[] {
-    return this.step
+    const orderPos = this._step.sort((step1: Step, step2: Step) => step2.Rect.Y - step1.Rect.Y);
+    return orderPos;
   }
+
   constructor(public pfcLines: string[]) {
     this.readStep()
   }
+
   private readStep(): void {
     let start = false
     let brackets = 0
@@ -21,7 +24,7 @@ export class PfcAlgorithm {
         if (brackets === 0) {
           start = false;
           brackets = 0;
-          this.step.push(new Step(text));
+          this._step.push(new Step(text));
           text = [];
         }
       } else {

@@ -34,9 +34,9 @@ export class Unit {
     return this.folder;
   }
 
-  private pfc: PfcAlgorithm;
+  private _pfc: PfcAlgorithm;
   public get Pfc(): PfcAlgorithm {
-    return this.pfc;
+    return this._pfc;
   }
   private formulaParam: FormulaParameter[] = [];
   public get FormulaParam(): FormulaParameter[] {
@@ -123,7 +123,7 @@ export class Unit {
         if (brackets === 0) {
           start = false;
           brackets = 0;
-          this.pfc = new PfcAlgorithm(text);
+          this._pfc = new PfcAlgorithm(text);
           text = [];
         }
       } else {
