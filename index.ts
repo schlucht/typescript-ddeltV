@@ -22,17 +22,12 @@ const boxCenter = (canvas.clientWidth - boxWidth) / 2;
 
 const distance = 50;
 
-new ReadFHX(daten);
-
+const fhx = new ReadFHX(daten);
 const ctx = canvas.getContext('2d');
-
-const deltaVDaten = new ReadStorage();
-let dates: Unit[] = [];
-
-dates = deltaVDaten.readStorage().get('STANDART_Q2000');
+let dates: Unit[] = fhx.Units;
 
 const createList = new UpList(dates, ulElement);
-createList.readUnitTitle();
+createList.readUnitTitle(ctx);
 
 for (let i = 0; i < op.length; i++) {
   boxes.push(new Box(ctx, boxCenter, boxStart + ((boxHeight + distance) * i), boxWidth, boxHeight, op[i]))
@@ -66,7 +61,7 @@ function activatedBox(e: MouseEvent) {
 
 // boxes = [b, b2, b3];
 for (let box of boxes) {
-  box.createBox();
+  box.createBox(ctx);
   box.renderCross(distance);
 }
 

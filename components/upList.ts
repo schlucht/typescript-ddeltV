@@ -1,22 +1,26 @@
 import { Unit } from "../api/module/unit";
-import { Rectangle } from "../api/module/rectangel"
-import { Step } from "../api/module/step";
+import { Box } from "./box";
 
 export class UpList {
+
   constructor(public dataList: Unit[], private ulElement: HTMLUListElement) {
 
   }
 
-  readUnitTitle() {
+  readUnitTitle(ctx: CanvasRenderingContext2D) {
     if (this.dataList.length <= 0) return;
     let li: HTMLLIElement;
+    const boxes: Box[] = [];
     for (let unit of this.dataList) {
       li = document.createElement('li');      
       li.classList.add('up');
       li.innerHTML = `<h3>${unit['name']}</h3>`;
       li.addEventListener('click', (e) => {
-        const list = e.target as HTMLLIElement;       
-        console.dir(unit.Pfc)
+        const list = e.target as HTMLLIElement;
+        let steps = unit.Pfc.Step;               
+        for (let op of steps) {
+          boxes.push()
+        }
       });
 
       this.ulElement.appendChild(li);

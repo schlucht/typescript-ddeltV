@@ -1,17 +1,11 @@
 
-import {SVG, Position, Dimension } from './rect';
-
-export class Box {
-  
-  width = 0;
-  height = 0;
-  x = 0;
-  y = 0;
+export class Box { 
   crossH = 15;
   crossW = 5;
   diff = 7;
   _isActive = false;
   distance = 0;
+  ctx: CanvasRenderingContext2D; 
 
   get isActive() {
     return this._isActive;
@@ -21,19 +15,20 @@ export class Box {
      this._isActive = value;     
    }
 
-  constructor (public ctx: CanvasRenderingContext2D, 
-    x: number, 
-    y: number, 
-    width: number, 
-    height: number, 
+  constructor (
+    public x: number, 
+    public y: number, 
+    public width: number, 
+    public height: number, 
     public text = 'OP_START') {
-    this.width = width;
-    this.height = height;
-    this.x = x;
-    this.y = y;    
+    
   }
 
-  createBox() {
+  createBox(ctx: CanvasRenderingContext2D) {
+     if (!ctx) {
+        throw new Error('Fehler')
+      }
+    this.ctx = ctx;
     let diff = 7;
     let fontSize = 14;
     this.ctx.setLineDash([]);
@@ -69,6 +64,9 @@ export class Box {
   }
 
   renderCross(distance: number) {
+     if (!this.ctx) {
+        throw new Error('Fehler')
+      }
     this.distance = distance;
     let x = this.x + (this.width / 2);
     let y = this.y + this.height + (distance / 2) - (this.crossH / 2);
@@ -85,6 +83,9 @@ export class Box {
   }
 
   renderLine(x: number, y: number, distance: number) {
+     if (!this.ctx) {
+        throw new Error('Fehler')
+      }
     this.ctx.beginPath();
     this.ctx.strokeStyle = '#000';
     this.ctx.lineWidth = 0.5;
@@ -94,6 +95,9 @@ export class Box {
   }
 
   private renderActivtedBorder(activated: boolean): void {
+     if (!this.ctx) {
+        throw new Error('Fehler')
+      }
     this.ctx.lineWidth = .5;    
     this.ctx.setLineDash([4, 2]);
     if (activated) {    
@@ -101,7 +105,7 @@ export class Box {
       this.ctx.strokeRect(this.x - 5, this.y - 5, this.width + 10, this.height + 10);    
     } else {      
       this.ctx.clearRect(this.x - 6, this.y - 6, this.width + 12, this.height + 12);     
-      this.createBox();
+      this.createBox(this.ctx);
       // this.renderCross(this.distance);
     }
     

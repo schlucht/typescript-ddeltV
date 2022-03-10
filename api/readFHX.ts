@@ -12,6 +12,9 @@ export class ReadFHX {
   public get Folder(): string {
     return this.folder;
   }
+  public get Units(): Unit[] {
+    return this.units;
+  }
 
   constructor(public fhXString: string) {
     this.store.readStorage()
